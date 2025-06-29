@@ -1,0 +1,1 @@
+C:\Users\Lucas\projetos\organizador_de_arquivos\organizador_de_arquivos\target\debug\organizador_de_arquivos.exe: C:\Users\Lucas\projetos\organizador_de_arquivos\organizador_de_arquivos\src\main.rs C:\Users\Lucas\projetos\organizador_de_arquivos\organizador_de_arquivos\src\organizer.rs
