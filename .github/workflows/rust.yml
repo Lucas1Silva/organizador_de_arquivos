@@ -1,6 +1,5 @@
 name: Rust CI
 
-# Gatilhos: roda em pushes para a main e develop, e em pull requests para a develop
 on:
   push:
     branches: [ "main", "develop" ]
@@ -11,31 +10,33 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  # Job para checar formatação e lints (boas práticas)
-  check:
-    name: Check & Lint
+  build_and_test:
+    name: Build & Test
     runs-on: ubuntu-latest
+    
+    # A linha mágica está aqui.
+    # Isso define o diretório de trabalho padrão para todos os passos deste job.
+    defaults:
+      run:
+        working-directory: ./organizador_de_arquivos
+
     steps:
-      - uses: actions/checkout@v4
+      # 1. Baixa o código do seu repositório para o runner
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Roda o formatador no modo de checagem
       - name: Check formatting
         run: cargo fmt -- --check
-      - name: Run Clippy
-        run: cargo clippy -- -D warnings # Trata warnings como erros
 
-  # Job para rodar testes (mesmo que não tenhamos, é uma boa prática)
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+      # 3. Roda o Clippy para checar por erros e warnings
+      - name: Run Clippy
+        run: cargo clippy -- -D warnings
+
+      # 4. Roda os testes
       - name: Run tests
         run: cargo test --verbose
 
-  # Job para compilar o projeto em modo release
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+      # 5. Compila o projeto em modo release para garantir que está funcional
       - name: Build release
         run: cargo build --verbose --release
