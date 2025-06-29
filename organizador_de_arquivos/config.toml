@@ -1,0 +1,10 @@
+# Exemplo de configuração para o organizador de arquivos
+# Mapeia um nome de diretório para uma lista de extensões
+
+[regras]
+Imagens = ["jpg", "jpeg", "png", "gif", "bmp"]
+Documentos = ["pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx"]
+Videos = ["mp4", "mov", "avi", "mkv"]
+Musicas = ["mp3", "wav", "flac"]
+Arquivos = ["zip", "rar", "7z", "tar.gz"]
+Outros = [] # Deixe vazio para não mover arquivos desconhecidos, ou adicione extensões
